@@ -1,0 +1,7 @@
+{% for forwarder in dhcp_forwarders %}
+set forwarding-options dhcp-relay server-group {{ forwarder.name }} {{ forwarder.ip }}
+set forwarding-options dhcp-relay active-server-group {{ forwarder.name }}
+{% for interface in forwarder.interfaces %}
+set forwarding-options dhcp-relay group all interface {{ interface }}
+{% endfor %}
+{% endfor %}
